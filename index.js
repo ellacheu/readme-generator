@@ -2,11 +2,37 @@
 const inquirer = require('inquirer');
 // TODO: Create an array of questions for user input
 const questions = [
-    'What was your motivation?',
-    'Why did you build this project?',
-    'What problem did you it solve?',
-    'What did you learn?',
-    'What makes your project stand out?',
+    {
+        type: 'input',
+        name: 'Title',
+        message: 'Enter the title of your project',
+    },
+    {
+        type: 'input',
+        name: 'Description',
+        message: 'Enter a description of your project'
+    },    
+    {
+        type: 'input',
+        name: 'Installation',
+        message: 'Enter installation instructions for your project',
+    },
+    {
+        type: 'input',
+        name: 'Usage',
+        message: 'Enter usage information of your project',
+    },
+    {
+        type: 'input',
+        name: 'Contributing',
+        message: 'Enter contribution guidelines for your project',
+    },
+    {
+        type: 'input',
+        name: 'Tests',
+        message: 'Enter test instructions for your project'
+    },
+
 ];
 
 // TODO: Create a function to write README file
