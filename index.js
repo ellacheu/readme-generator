@@ -1,7 +1,21 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const { readFile, writeFile } = require('fs').promises;
+
+// TODO: Create a function to write README file
+fs = {
+    promises: {
+        writeFile: function(){
+
+        }
+    }
+}
+
 // TODO: Create an array of questions for user input
-const questions = [
+let readInfo
+inquirer
+.prompt ([
+// const questions = [
     {
         type: 'input',
         name: 'Title',
@@ -32,11 +46,74 @@ const questions = [
         name: 'Tests',
         message: 'Enter test instructions for your project'
     },
+    // {
+    //     type: 'list',
+    //     name: 'license',
+    //     choices:
+    //     message: 'Select license for your project from list'
+    // },
+    {
+        type: 'input',
+        name: 'Questions',
+        message: 'Enter GitHub username:',
+    },
+    {
+        type: 'input',
+        name: 'Questions',
+        message: 'Enter email address and instructions on how to contact with additional questions:',
+    }
+])
+.then(data => {
+    readInfo = data
+    return fs.promises.readFile('readme.json', 'utf-8')
+})
+.then((answers) => {
+    const parsedData = JSON.parse(answers);
+    parsedData.push(readInfo)
+    return fs.promises.writeFile('readme.json', JSON.stringify(parsedData))
+})
+.then (() => console.log('Done!'))
+.catch (err => console.log(err))
 
-];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function generateREADME(data) {
+    const template = `
+    # ${data.title}
+    
+    ## Description
+    ${data.description}
+
+    
+    ## Table of Contents
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [License](#license)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+        
+    ## Installation
+    ${data.installation}
+    
+    ## Usage
+    ${data.usage}
+    
+    ## License
+    ${data.license}
+    
+    ## Contributing
+    ${data.contributing}
+    
+    ## Tests
+    ${data.tests}
+    
+    ## Questions
+    If you have any questions, please contact me:
+    GitHub: [${data.github}](https://github.com/${data.github})
+    Email: ${data.email}
+  `;
+
+}
 
 // TODO: Create a function to initialize app
 function init() {}
