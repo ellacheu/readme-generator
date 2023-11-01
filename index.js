@@ -1,13 +1,66 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const { readFile, writeFile } = require('fs').promises;
+const {readFile, writeFile} = require('fs').promises;
 
 // TODO: Create a function to write README file
 fs = {
     promises: {
-        writeFile: function(){
+        writeFile: function generateREADME(data) {
+        const template = `
+        # ${data.title}
+        
+        ## Description
+        ${data.description}
 
+        
+        ## Table of Contents
+        - [Installation](#installation)
+        - [Usage](#usage)
+        - [License](#license)
+        - [Contributing](#contributing)
+        - [Tests](#tests)
+        - [Questions](#questions)
+            
+        ## Installation
+        ${data.installation}
+        
+        ## Usage
+        ${data.usage}
+        
+        ## License
+        ${data.license}
+        
+        ## Contributing
+        ${data.contributing}
+        
+        ## Tests
+        ${data.tests}
+        
+        ## Questions
+        If you have any questions, please contact me:
+        GitHub: [${data.github}](https://github.com/${data.github})
+        Email: ${data.email}
+    `;
+
+    fs.writeFile('readme.json', template, (err) => {
+        if (err) {
+        console.error(err);
+        return;
         }
+        console.log('README file generated successfully!');
+         });
+
+     },
+    
+     readFile: function (readFile) {
+        fs.readFile('readme.json', 'utf-8', (err,data)=> {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log('Data read', data)
+        });
+     }
     }
 }
 
@@ -15,7 +68,6 @@ fs = {
 let readInfo
 inquirer
 .prompt ([
-// const questions = [
     {
         type: 'input',
         name: 'Title',
@@ -66,6 +118,7 @@ inquirer
 .then(data => {
     readInfo = data
     return fs.promises.readFile('readme.json', 'utf-8')
+    console.log(data)
 })
 .then((answers) => {
     const parsedData = JSON.parse(answers);
@@ -75,52 +128,11 @@ inquirer
 .then (() => console.log('Done!'))
 .catch (err => console.log(err))
 
-
-function generateREADME(data) {
-    const template = `
-    # ${data.title}
-    
-    ## Description
-    ${data.description}
-
-    
-    ## Table of Contents
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [License](#license)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [Questions](#questions)
-        
-    ## Installation
-    ${data.installation}
-    
-    ## Usage
-    ${data.usage}
-    
-    ## License
-    ${data.license}
-    
-    ## Contributing
-    ${data.contributing}
-    
-    ## Tests
-    ${data.tests}
-    
-    ## Questions
-    If you have any questions, please contact me:
-    GitHub: [${data.github}](https://github.com/${data.github})
-    Email: ${data.email}
-  `;
-
-}
-
 // TODO: Create a function to initialize app
 function init() {}
 
 // Function call to initialize app
 init();
-
 
 // GIVEN a command-line application that accepts user input
 // WHEN I am prompted for information about my application repository
