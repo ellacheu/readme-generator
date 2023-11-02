@@ -52,14 +52,14 @@ fs = {
 
      },
     
-     readFile: function (readFile) {
-        fs.readFile('readme.json', 'utf-8', (err,data)=> {
+     readFile: function readmeGenerated() {
+        fs.promises.readFile('readme.json', 'utf-8', (err,data)=> {
         if (err) {
             console.error(err);
             return;
         }
         console.log('Data read', data)
-        });
+        }); 
      }
     }
 }
