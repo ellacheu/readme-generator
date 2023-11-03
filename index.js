@@ -1,68 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const {readFile, writeFile} = require('fs').promises;
-
-// TODO: Create a function to write README file
-fs = {
-    promises: {
-        writeFile: function generateREADME(data) {
-        const template = `
-        # ${data.title}
-        
-        ## Description
-        ${data.description}
-
-        
-        ## Table of Contents
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [License](#license)
-        - [Contributing](#contributing)
-        - [Tests](#tests)
-        - [Questions](#questions)
-            
-        ## Installation
-        ${data.installation}
-        
-        ## Usage
-        ${data.usage}
-        
-        ## License
-        ${data.license}
-        
-        ## Contributing
-        ${data.contributing}
-        
-        ## Tests
-        ${data.tests}
-        
-        ## Questions
-        If you have any questions, please contact me:
-        GitHub: [${data.github}](https://github.com/${data.github})
-        Email: ${data.email}
-    `;
-
-    fs.writeFile('readme.json', template, (err) => {
-        if (err) {
-        console.error(err);
-        return;
-        }
-        console.log('README file generated successfully!');
-         });
-
-     },
-    
-     readFile: function readmeGenerated() {
-        fs.promises.readFile('readme.json', 'utf-8', (err,data)=> {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        console.log('Data read', data)
-        }); 
-     }
-    }
-}
+const fs = require('fs');
 
 // TODO: Create an array of questions for user input
 let readInfo
@@ -70,63 +8,101 @@ inquirer
 .prompt ([
     {
         type: 'input',
-        name: 'Title',
+        name: 'title',
         message: 'Enter the title of your project',
     },
     {
         type: 'input',
-        name: 'Description',
+        name: 'description',
         message: 'Enter a description of your project'
     },    
     {
         type: 'input',
-        name: 'Installation',
+        name: 'installation',
         message: 'Enter installation instructions for your project',
     },
     {
         type: 'input',
-        name: 'Usage',
+        name: 'usage',
         message: 'Enter usage information of your project',
     },
     {
         type: 'input',
-        name: 'Contributing',
+        name: 'contributing',
         message: 'Enter contribution guidelines for your project',
     },
     {
         type: 'input',
-        name: 'Tests',
+        name: 'tests',
         message: 'Enter test instructions for your project'
     },
-    // {
-    //     type: 'list',
-    //     name: 'license',
-    //     choices:
-    //     message: 'Select license for your project from list'
-    // },
     {
         type: 'input',
-        name: 'Questions',
+        name: 'license',
+        // choices:
+        message: 'Select license for your project from list'
+    },
+    {
+        type: 'input',
+        name: 'questions',
         message: 'Enter GitHub username:',
     },
     {
         type: 'input',
-        name: 'Questions',
+        name: 'questions',
         message: 'Enter email address and instructions on how to contact with additional questions:',
     }
 ])
 .then(data => {
-    readInfo = data
-    return fs.promises.readFile('readme.json', 'utf-8')
-    console.log(data)
+    const readme = generateREADME(data)
+    // fs.promises.readFile('readme.md', 'utf-8')   
+    return fs.promises.writeFile('readme.md', readme)
 })
-.then((answers) => {
-    const parsedData = JSON.parse(answers);
-    parsedData.push(readInfo)
-    return fs.promises.writeFile('readme.json', JSON.stringify(parsedData))
-})
+
+
 .then (() => console.log('Done!'))
 .catch (err => console.log(err))
+
+// TODO: Create a function to write README file
+        
+function generateREADME(data) {
+    const template = `
+    # ${data.title}
+
+    ## Description
+    ${data.description}
+
+
+    ## Table of Contents
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [License](#license)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+        
+    ## Installation
+    ${data.installation}
+
+    ## Usage
+    ${data.usage}
+
+    ## License
+    ${data.license}
+
+    ## Contributing
+    ${data.contributing}
+
+    ## Tests
+    ${data.tests}
+
+    ## Questions
+    If you have any questions, please contact me:
+    GitHub: [${data.github}](https://github.com/${data.github})
+    Email: ${data.email}
+    `;
+ //return the template in order to actually pass the data on, the error is because we arent returning anything and we're getting undefined
+}
 
 // TODO: Create a function to initialize app
 function init() {}
