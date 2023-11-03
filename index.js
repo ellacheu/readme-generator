@@ -101,6 +101,7 @@ function generateREADME(data) {
     GitHub: [${data.github}](https://github.com/${data.github})
     Email: ${data.email}
     `;
+    return template;
  //return the template in order to actually pass the data on, the error is because we arent returning anything and we're getting undefined
 }
 
