@@ -19,7 +19,6 @@
 
    ## Usage
    ![video](./assets/appgif.gif)
-   ![video](./assets/readme%vid.webm)
 
    ## License
    MIT License
