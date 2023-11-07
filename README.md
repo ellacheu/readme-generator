@@ -21,7 +21,7 @@
    ![video](./assets/appgif.gif)
 
    ## Code Source
-   [gitHub] (https://github.com/ellacheu)
+   [GitHub](https://github.com/ellacheu)
 
    ## License
    MIT License
