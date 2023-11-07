@@ -20,6 +20,9 @@
    ## Usage
    ![video](./assets/appgif.gif)
 
+   ## Code Source
+   [gitHub] (https://github.com/ellacheu)
+
    ## License
    MIT License
 
