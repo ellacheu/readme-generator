@@ -45,12 +45,12 @@ inquirer
     },
     {
         type: 'input',
-        name: 'questions',
+        name: 'github',
         message: 'Enter GitHub username:',
     },
     {
         type: 'input',
-        name: 'questions',
+        name: 'email',
         message: 'Enter email address and instructions on how to contact with additional questions:',
     }
 ])
@@ -114,5 +114,3 @@ function generateREADME(data) {
 
 // Function call to initialize app
 init();
-
-// Include a video of the typical user flow through your application. This includes views of the prompts and the responses after their selection.

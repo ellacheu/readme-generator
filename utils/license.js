@@ -1,5 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// function to render License Badges
 function renderLicenseBadge(license) {
   const licenseBadges = {
     MIT:'https://img.shields.io/badge/License-MIT-yellow.svg',
@@ -14,8 +13,7 @@ function renderLicenseBadge(license) {
   
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// function to render License Links
 function renderLicenseLink(license) {
   const licenseLinks = {
     MIT: '[License: MIT] (https://opensource.org/licenses/MIT)',
@@ -30,8 +28,7 @@ function renderLicenseLink(license) {
   return `(${licenseURL})`;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// function to render License Section
 function renderLicenseSection(license) {
   const licenseSection = {
   badge: `${renderLicenseBadge}`, 
@@ -45,6 +42,7 @@ const licenseRender = licenseSection[license];
 return `[License](${licenseRender})`;
 }
 
+// export to index.js
 module.exports = {
   renderLicenseBadge,
   renderLicenseLink,
