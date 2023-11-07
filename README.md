@@ -12,10 +12,10 @@
    - [Questions](#questions)
         
    ## Installation
-   Initialize prompts using 
-    -node index.js in the command line of your terminal 
-    -answer the prompts 
-    -Sections with answers and a table of contents will be generated in the readme.md file.
+   Initialize prompts using <br>
+    -node index.js in the command line of your terminal <br>
+    -answer the prompts <br>
+    -Sections with answers and a table of contents will be generated in the readme.md file. <br>
 
    ## Usage
    ![video](./assets/appgif.gif)
@@ -33,6 +33,8 @@
 
    ## Contributing
    [MDN Web Docs](https://developer.mozilla.org/en-US/) <br> [W3 Schools](https://www.w3schools.com/)
+
+   ## Tests
 
    ## Questions
    If you have any questions, please contact me:
